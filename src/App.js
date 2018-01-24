@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
 
@@ -51,10 +50,6 @@ class App extends Component {
         padding: '10px',
         cursor: 'pointer',
         color: 'white',
-        ':hover': {
-            backgroundColor: 'lightgreen',
-            color: 'black'
-        }
     }
 
     let persons = null;
@@ -75,10 +70,6 @@ class App extends Component {
         );
 
         style.backgroundColor = "red";
-        style[':hover'] = {
-            backgroundColor: 'salmon',
-            color: 'black'
-        }
     }
 
     const classes = [];
@@ -90,7 +81,6 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
       <div className="App">
         <h1>Hi, this is my 2nd react commit</h1>
         <p className={classes.join(' ')}>this really works!</p>
@@ -100,7 +90,6 @@ class App extends Component {
         >Show persons</button>
         {persons}
       </div>
-      </StyleRoot>
     );
 
       // this is same as below
@@ -109,4 +98,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
