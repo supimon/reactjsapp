@@ -28,6 +28,19 @@ class App extends Component {
       );
   }
 
+  changeHandler = (event, id) => {
+      const persons = [...this.state.persons];
+      const personIndex = this.state.persons.findIndex(p => p.id === id);
+
+      const person = {...persons[personIndex]};
+      person.name = event.target.value;
+      persons[personIndex] = person;
+
+      this.setState(
+          { persons: persons}
+      );
+  }
+
   render() {
 
     const style = {
@@ -48,6 +61,7 @@ class App extends Component {
                         name={person.name}
                         age={person.age}
                         delete={this.deleteHandler.bind(this, index)}
+                        change={(event) => this.changeHandler(event, person.id)}
                         key={person.id}
                     />
                 })}
