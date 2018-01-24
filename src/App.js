@@ -20,7 +20,8 @@ class App extends Component {
   }
 
   deleteHandler = (index) => {
-      const persons = this.state.persons.slice(); // make a copy always
+      // const persons = this.state.persons.slice(); always make a copy
+      const persons = [...this.state.persons];
       persons.splice(index, 1);
       this.setState(
           {persons: persons}
