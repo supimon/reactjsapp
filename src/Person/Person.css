@@ -5,3 +5,9 @@
     padding: 10px;
     box-shadow: 0 2px 3px #ddd;
 }
+
+@media (min-width: 700px) {
+    .Person{
+        width: 60%;
+    }
+}
