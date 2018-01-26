@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../../components/Persons/Persons';
+import Cockpit from '../../components/Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -43,8 +44,7 @@ class App extends Component {
 
   render() {
 
-    let persons = null,
-        btnClasses = null;
+    let persons = null;
 
     if(this.state.show){
       persons = (
@@ -54,25 +54,15 @@ class App extends Component {
           persons={this.state.persons}
         />
       );
-
-      btnClasses = classes.Red;
-    }
-
-    const genClasses = [];
-    if(this.state.persons.length <=2){
-      genClasses.push( classes.red );
-    }
-    if(this.state.persons.length <=1){
-      genClasses.push( classes.bold );
     }
 
     return (
       <div className={classes.App}>
-        <h1>Hi, this is my 2nd react commit</h1>
-        <p className={genClasses.join(' ')}>this really works!</p>
-        <button
-          className={btnClasses}
-          onClick={() => this.toggleHandler()}>Show persons</button>
+        <Cockpit
+          show={this.state.show}
+          toggled={this.toggleHandler}
+          persons={this.state.persons}
+        />
         {persons}
       </div>
     );
