@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../../components/Persons/Person/Person';
+import Persons from '../../components/Persons/Persons';
 
 class App extends Component {
 
@@ -48,19 +48,11 @@ class App extends Component {
 
     if(this.state.show){
       persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                name={person.name}
-                age={person.age}
-                delete={this.deleteHandler.bind(this, index)}
-                change={(event) => this.changeHandler(event, person.id)}
-                key={person.id}
-              />
-            )
-          })}
-        </div>
+        <Persons
+          changed={this.changeHandler}
+          deleted={this.deleteHandler}
+          persons={this.state.persons}
+        />
       );
 
       btnClasses = classes.Red;
