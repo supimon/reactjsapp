@@ -1,44 +1,45 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
   state = {
-      persons : [
-          {id: "unique1", name: "Supi", age: 36 },
-          {id: "unique2", name: "Dimple", age: 36 },
-          {id: "unique3", name: "Aura", age: 3 }
-      ],
-      show: true
+    persons : [
+      {id: "unique1", name: "Supi", age: 36 },
+      {id: "unique2", name: "Dimple", age: 36 },
+      {id: "unique3", name: "Aura", age: 3 }
+    ],
+    show: true
   }
 
   toggleHandler = () => {
-      this.setState(
-          {show: !this.state.show}
-      );
+    this.setState(
+      {show: !this.state.show}
+    );
   }
 
   deleteHandler = (index) => {
-      // const persons = this.state.persons.slice(); always make a copy
-      const persons = [...this.state.persons];
-      persons.splice(index, 1);
-      this.setState(
-          {persons: persons}
-      );
+    // const persons = this.state.persons.slice(); // always make a copy
+    const persons = [...this.state.persons];
+    persons.splice(index, 1);
+    this.setState(
+      {persons: persons}
+    );
   }
 
   changeHandler = (event, id) => {
-      const persons = [...this.state.persons];
-      const personIndex = this.state.persons.findIndex(p => p.id === id);
+    const persons = [...this.state.persons];
+    const personIndex = this.state.persons.findIndex(p => p.id === id);
 
-      const person = {...persons[personIndex]};
-      person.name = event.target.value;
-      persons[personIndex] = person;
+    const person = {...persons[personIndex]};
+    person.name = event.target.value;
+    persons[personIndex] = person;
 
-      this.setState(
-          { persons: persons}
-      );
+    this.setState(
+      { persons: persons}
+    );
   }
 
   render() {
@@ -47,29 +48,32 @@ class App extends Component {
         btnClasses = null;
 
     if(this.state.show){
-        persons = (
-            <div>
-                {this.state.persons.map((person, index) => {
-                    return <Person
-                        name={person.name}
-                        age={person.age}
-                        delete={this.deleteHandler.bind(this, index)}
-                        change={(event) => this.changeHandler(event, person.id)}
-                        key={person.id}
-                    />
-                })}
-            </div>
-        );
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            return (
+              <ErrorBoundary key={person.id}>
+                <Person
+                  name={person.name}
+                  age={person.age}
+                  delete={this.deleteHandler.bind(this, index)}
+                  change={(event) => this.changeHandler(event, person.id)}
+                />
+              </ErrorBoundary>
+            )
+          })}
+        </div>
+      );
 
-        btnClasses = classes.Red;
+      btnClasses = classes.Red;
     }
 
     const genClasses = [];
     if(this.state.persons.length <=2){
-        genClasses.push( classes.red );
+      genClasses.push( classes.red );
     }
     if(this.state.persons.length <=1){
-        genClasses.push( classes.bold );
+      genClasses.push( classes.bold );
     }
 
     return (
@@ -77,9 +81,8 @@ class App extends Component {
         <h1>Hi, this is my 2nd react commit</h1>
         <p className={genClasses.join(' ')}>this really works!</p>
         <button
-            className={btnClasses}
-            onClick={() => this.toggleHandler()}
-        >Show persons</button>
+          className={btnClasses}
+          onClick={() => this.toggleHandler()}>Show persons</button>
         {persons}
       </div>
     );
