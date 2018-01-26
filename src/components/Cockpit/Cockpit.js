@@ -20,7 +20,7 @@ const Cockpit = props => {
 
   return (
     <div className={classes.Cockpit}>
-      <h1>Hi, this is my 2nd react commit</h1>
+      <h1>{props.appTitle}</h1>
       <p className={genClasses.join(' ')}>this really works!</p>
       <button
         className={btnClasses}
