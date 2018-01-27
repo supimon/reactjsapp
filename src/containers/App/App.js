@@ -5,13 +5,42 @@ import Cockpit from '../../components/Cockpit/Cockpit';
 
 class App extends Component {
 
-  state = {
-    persons : [
-      {id: "unique1", name: "Supi", age: 36 },
-      {id: "unique2", name: "Dimple", age: 36 },
-      {id: "unique3", name: "Aura", age: 3 }
-    ],
-    show: true
+  constructor(props){
+    super(props);
+    console.log('[App.js] inside constructor', props);
+    this.state = {
+      persons : [
+        {id: "unique1", name: "Supi", age: 36 },
+        {id: "unique2", name: "Dimple", age: 36 },
+        {id: "unique3", name: "Aura", age: 3 }
+      ],
+      show: true
+    }
+  }
+
+  componentWillMount(){
+    console.log('[App.js] inside componentWillMount()');
+  }
+
+  componentDidMount(){
+    console.log('[App.js] inside componentDidMount()');
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log('[UPDATE App.js] inside componentWillReceiveProps()', nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    console.log('[UPDATE App.js] inside shouldComponentUpdate()', nextProps, nextState);
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState){
+    console.log('[UPDATE App.js] inside componentWillUpdate()', nextProps, nextState);
+  }
+
+  componentDidUpdate(){
+    console.log('[UPDATE App.js] inside componentDidUpdate()');
   }
 
   toggleHandler = () => {
@@ -43,6 +72,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] inside render()');
 
     let persons = null;
 
