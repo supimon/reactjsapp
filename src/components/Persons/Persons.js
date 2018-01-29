@@ -1,10 +1,10 @@
 /**
  * Created by supimon on 26/01/18.
  */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent {
 
   constructor(props){
     super(props);
@@ -23,10 +23,12 @@ class Persons extends Component {
     console.log('[UPDATE Persons.js] inside componentWillReceiveProps()', nextProps);
   }
 
-  shouldComponentUpdate(nextProps, nextState){
+  /*shouldComponentUpdate(nextProps, nextState){
     console.log('[UPDATE Persons.js] inside shouldComponentUpdate()', nextProps, nextState);
-    return nextProps.persons !== this.props.persons;
-  }
+    return nextProps.persons !== this.props.persons ||
+      nextProps.deleted !== this.props.deleted ||
+      nextProps.changed !== this.props.changed ; // note: only the pointers are compared
+  }*/
 
   componentWillUpdate(nextProps, nextState){
     console.log('[UPDATE Persons.js] inside componentWillUpdate()', nextProps, nextState);
