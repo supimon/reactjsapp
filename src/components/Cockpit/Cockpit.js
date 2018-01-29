@@ -27,6 +27,15 @@ const Cockpit = props => {
         onClick={props.toggled}>Show persons</button>
     </div>
   );
+
+  // you can return this array instead of wrapping it with a div but the styles would be lost
+  /*return [
+      <h1 key="uniqueKey123">{props.appTitle}</h1>,
+      <p key="uniqueKey124" className={genClasses.join(' ')}>this really works!</p>,
+      <button key="uniqueKey125"
+        className={btnClasses}
+        onClick={props.toggled}>Show persons</button>
+  ];*/
 }
 
 export default Cockpit;
