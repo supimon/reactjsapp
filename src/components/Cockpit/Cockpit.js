@@ -1,15 +1,16 @@
 /**
  * Created by supimon on 26/01/18.
  */
-import React from 'react';
+import React, { Fragment } from 'react';
 import classes from './Cockpit.css';
+/*import Aux from '../../hoc/Aux';*/
 
 const Cockpit = props => {
 
   const genClasses = [];
-  let btnClasses = null;
+  let btnClasses = classes.Button;
   if(props.show){
-    btnClasses = classes.Red;
+    btnClasses = [ classes.Button, classes.Red ].join(' ');
   }
   if(props.persons.length <=2){
     genClasses.push( classes.red );
@@ -19,13 +20,13 @@ const Cockpit = props => {
   }
 
   return (
-    <div className={classes.Cockpit}>
+    <Fragment>
       <h1>{props.appTitle}</h1>
       <p className={genClasses.join(' ')}>this really works!</p>
       <button
         className={btnClasses}
         onClick={props.toggled}>Show persons</button>
-    </div>
+    </Fragment>
   );
 
   // you can return this array instead of wrapping it with a div but the styles would be lost
