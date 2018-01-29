@@ -4,6 +4,8 @@
 import React, { Component } from 'react';
 
 const withClassHOC = (WrappedComponent, classesName) => {
+
+  // dumb component factory
   /*return (props) => {
     return (
       <div className={classesName}>
@@ -12,6 +14,7 @@ const withClassHOC = (WrappedComponent, classesName) => {
     );
   }*/
 
+  // class component factory
   return class extends Component{
     render(){
       return (
