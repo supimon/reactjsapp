@@ -15,7 +15,8 @@ class App extends PureComponent {
         {id: "unique2", name: "Dimple", age: 36 },
         {id: "unique3", name: "Aura", age: 3 }
       ],
-      show: true
+      show: true,
+      toggleCount: 0
     }
   }
 
@@ -46,9 +47,28 @@ class App extends PureComponent {
   }
 
   toggleHandler = () => {
-    this.setState(
-      {show: !this.state.show}
+    // erroneous way of doing things
+    /*this.setState({
+        show: !this.state.show,
+        toggleCount: this.state.toggleCount + 1
+      }
     );
+    this.setState({
+        toggleCount: this.state.toggleCount + 1
+      }
+    );*/
+    // correct way of doing things
+    this.setState((prevState, props) => {
+      return {
+        show: !prevState.show,
+        toggleCount: prevState.toggleCount + 1
+      }
+    });
+    this.setState((prevState, props) => {
+      return {
+        toggleCount: prevState.toggleCount + 1
+      }
+    });
   }
 
   deleteHandler = (index) => {
