@@ -64,11 +64,13 @@ class App extends PureComponent {
         toggleCount: prevState.toggleCount + 1
       }
     });
+    /*
     this.setState((prevState, props) => {
       return {
         toggleCount: prevState.toggleCount + 1
       }
     });
+     */
   }
 
   deleteHandler = (index) => {

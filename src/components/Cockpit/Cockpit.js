@@ -21,11 +21,11 @@ const Cockpit = props => {
 
   return (
     <Fragment>
-      <h1>{props.appTitle}</h1>
-      <p className={genClasses.join(' ')}>this really works!</p>
-      <button
-        className={btnClasses}
-        onClick={props.toggled}>Show persons</button>
+        <h1>{props.appTitle}</h1>
+        <p className={genClasses.join(' ')}>this really works!</p>
+        <button
+          className={btnClasses}
+          onClick={props.toggled}>Show persons</button>
     </Fragment>
   );
 
