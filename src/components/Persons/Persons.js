@@ -1,10 +1,14 @@
 /**
  * Created by supimon on 26/01/18.
  */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Person from './Person/Person';
 
-class Persons extends PureComponent {
+class Persons extends Component {
+  // just to check if setState would fire in life cycle hooks
+  state = {
+    persons: []
+  };
 
   constructor(props){
     super(props);
@@ -21,6 +25,10 @@ class Persons extends PureComponent {
 
   componentWillReceiveProps(nextProps){
     console.log('[UPDATE Persons.js] inside componentWillReceiveProps()', nextProps);
+    // this is right
+    /*this.setState({
+      persons: nextProps.persons
+    });*/
   }
 
   /*shouldComponentUpdate(nextProps, nextState){
@@ -32,10 +40,20 @@ class Persons extends PureComponent {
 
   componentWillUpdate(nextProps, nextState){
     console.log('[UPDATE Persons.js] inside componentWillUpdate()', nextProps, nextState);
+    // this is wrong because it will cause re-render
+    // however this will be batched together with the one in componentDidUpdate
+    // since they are all executed in the same context
+    /*this.setState({
+      persons: this.props.persons
+    });*/
   }
 
   componentDidUpdate(){
     console.log('[UPDATE Persons.js] inside componentDidUpdate()');
+    // this is wrong because it will cause re-render
+    this.setState({
+      persons: this.props.persons
+    });
   }
 
   render(){
